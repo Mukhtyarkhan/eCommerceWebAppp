@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+
+<body>
+    <div class="continer">
+        <h2>Your Cart</h2>
+
+        {% if items %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.product.product_name }}</td>
+                    <td>${{ item.product.product_price }}</td>
+                    <td>
+                        <form method="post" action="{% url 'edit_cart' item.id %}">
+                            {% csrf_token %}
+                            <button name="action" value="decrease">-</button>
+                            {{ item.quantity }}
+                            <button name="action" value="increase">+</button>
+                        </form>
+                    </td>
+                    <td>${{ item.get_total }}</td>
+                    <td>
+                        <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                            {% csrf_token %}
+                            <button name="action" value="remove">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Total:</strong></td>
+                    <td>${{ total }}</td>
+                    <td>
+                        <a href="{% url 'checkout' %}" class="btn ">Checkout</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        {% else %}
+        <p>Your cart is empty.</p>
+        {% endif %}
+
+    </div>
+    <div>
+
+        <a href="{% url 'home' %}" class="btn ">add to cart</a>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce store</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="nav_bar">
+            <div class="right_nav_bar">
+                <p>E-commers stor</p>
+
+
+            </div>
+
+            <div class="center_naw_bar">
+                <div class="serach_bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Serach Products">
+                </div>
+
+            </div>
+
+            <div class="left_nav_bar">
+                <div class="button-field">
+                    <!-- Link to Login Page -->
+                    <form action="{% url 'login' %}" method="get">
+                        <button type="submit">Login</button>
+                    </form>
+
+                    <!-- Link to Signup Page -->
+                    <!-- <form action="{% url 'signup' %}" method="get">
+                        <button type="submit">Signup</button>
+                    </form> -->
+
+                    <div class="cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="cricle">
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </nav>
+    </header>
+
+
+
+    <section>
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="container">
+            {% for product in products %}
+            <div class="content">
+                <div class="product_image">
+
+                    {% if product.product_image %}
+                    <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
+                    {% else %}
+                    <p>No image available</p>
+                    {% endif %}
+                </div>
+                <div class="product_name">
+                    <strong>{{ product.product_name }}</strong>
+                </div>
+
+                <div class="last_part">
+                    <div class="button-field update">
+                        <button><a href="{% url 'add_to_cart' product.id  %}">Add to cart</a></button>
+                        <button><a href="{% url 'cart' %}">View</a></button>
+                    </div>
+                    <div class="product_price">${{ product.product_price }}</div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No products available.</p> <!-- Display message if no products are found -->
+            {% endfor %}
+        </div>
+    </section>
+</body>
+
+</html>

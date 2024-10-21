@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkout</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Checkout</h2>
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Order Summary Section -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.product.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.product.product_price }}</td>
+                    <td>${{ item.get_total }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3">Total:</td>
+                    <td>${{ total }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="payment-form">
+            <h3>Shipping Information</h3>
+            <form method="POST">
+                {% csrf_token %}
+
+                <button type="submit" class="btn ">Pay ${{ total }}</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

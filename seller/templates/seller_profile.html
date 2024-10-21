@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>seller profile</title>
+</head>
+
+<body>
+
+    <h2>Seller Profile</h2>
+
+
+    {% if store %}
+    {% if store.is_approved == True %}
+
+    {% if total_products == 0 %}
+    <p>Hi {{ user.username }}, your store is approved!</p>
+    <a href="{% url 'manage_store' %}" class="btn">Manage Your Store</a>
+    {% endif %}
+
+
+    {% if total_products > 0 %}
+    <hr />
+
+
+
+    <div class="container">
+        <h1>{{ user.username }} - Dashboard</h1>
+
+
+        <div class="section">
+            <h2>Stock Overview</h2>
+            <h2>Total stock in your store: {{ total_stock }}</h2>
+            <p>Total Products: {{ total_products }}</p>
+
+
+            <h3>Low Stock Items</h3>
+            <ul>
+                {% for product in low_stock_products %}
+                <li>
+                    {{ product.product_name }} - {{ product.stock }} remaining
+                    <a href="{% url 'update_stock' product.id %}" class="btn">Update Stock</a>
+                </li>
+                {% endfor %}
+            </ul>
+
+
+            <h3>Out of Stock Items</h3>
+            <ul>
+                {% for product in out_of_stock %}
+                <li>
+                    {{ product.product_name }}
+                    <a href="{% url 'update_stock' product.id %}" class="btn">Update Stock</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="section">
+            <h2>Top Selling Products</h2>
+            <ul>
+                {% for product in top_selling %}
+                <li>{{ product.product_name }} - {{ product.sales_count }} sales</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'manage_store' %}" class="btn">Manage Your Store</a>
+    </div>
+    {% endif %}
+
+    {% elif store.is_approved == False %}
+    <p>Your store request was denied.</p>
+
+    {% elif store.is_approved == None %}
+    <p>Your store request is pending approval.</p>
+    {% endif %}
+    {% else %}
+    <p>You haven't requested to create a store yet.</p>
+    <a href="{% url 'store_request' %}" class="btn">Request to Create Store</a>
+    {% endif %}
+
+
+</body>
+
+</html>

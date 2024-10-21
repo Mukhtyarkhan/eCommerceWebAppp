@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New product</title>
+    <link rel="stylesheet" href="/static/style/add_new_products.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form item-addition">
+            <div class="form-content">
+                <h1>Adding Product</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="field input-field">
+                        {{ form.product_name.label_tag }}
+                        {{ form.product_name }}
+
+                    </div>
+
+                    <div class="field input-field">
+                        {{ form.product_desc.label_tag }}
+                        {{ form.product_desc }}
+                    </div>
+
+                    <div class="field input-field">
+                        {{ form.product_price.label_tag }}
+                        {{ form.product_price }}
+                    </div>
+
+                    <div class="field input-field">
+                        {{ form.product_image.label_tag }}
+                        {{ form.product_image }}
+                    </div>
+
+                    <div class="field button-field">
+                        <button type="submit">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

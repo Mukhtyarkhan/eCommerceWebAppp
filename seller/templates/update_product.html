@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update product</title>
+    <link rel="stylesheet" href="/static/style/add_new_products.css"> <!-- Link to your CSS file -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="form item-update">
+            <div class="form-content">
+                <h1>Update product</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- Form fields -->
+                    <div class="field ">
+                        {{ form.product_name.label_tag }}
+                        {{ form.product_name }}
+                        <div class="error">{{ form.product_name.errors }}</div>
+                    </div>
+
+                    <div class="field ">
+                        {{ form.product_desc.label_tag }}
+                        {{ form.product_desc }}
+                        <div class="error">{{ form.product_desc.errors }}</div>
+                    </div>
+
+                    <div class="field ">
+                        {{ form.product_price.label_tag }}
+                        {{ form.product_price }}
+                        <div class="error">{{ form.product_price.errors }}</div>
+                    </div>
+
+                    <div class="field ">
+                        {{ form.product_image.label_tag }}
+                        {{ form.product_image }}
+                        <div class="error">{{ form.product_image.errors }}</div>
+                    </div>
+
+                    <div class="field">
+                        <button type="submit">Update Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

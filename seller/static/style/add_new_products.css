@@ -1,0 +1,115 @@
+/* Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+    width: 100%; 
+}
+
+.button-field {
+    display: flex;
+    gap: 10px;
+}
+
+.button-field button {
+    padding: 10px 25px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Ensures container fills remaining space */
+    width: 100%;
+}
+
+.form {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.field {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.field input,
+.field button {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.field input:focus {
+    border-color: #4070f4;
+}
+
+.field input[type="file"] {
+    padding: 5px;
+}
+
+.table-wrapper {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    max-width: 800px;
+    margin: 0 auto; 
+    overflow-x: auto;
+    overflow-wrap: break-word;
+}
+
+.table-wrapper h1 {
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+
+
+@media screen and (max-width: 400px) {
+    .form {
+        padding: 30px 20px;
+    }
+}
